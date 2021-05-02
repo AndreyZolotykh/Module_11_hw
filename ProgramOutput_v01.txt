@@ -1,0 +1,38 @@
+Creating large file...
+BigIntSize = 500000000
+Searching maximum value: success: max = 99
+Shoving in buckets...
+counts[0] = 49999880
+counts[1] = 49996315
+counts[2] = 49994560
+counts[3] = 49986237
+counts[4] = 50003952
+counts[5] = 49997756
+counts[6] = 50002907
+counts[7] = 49994215
+counts[8] = 50005429
+counts[9] = 50018750
+Sorting and merging: 
+: Sorting and writing from bucket 0
+sorting took 9.99028s
+: Sorting and writing from bucket 1
+sorting took 10.0396s
+: Sorting and writing from bucket 2
+sorting took 9.75673s
+: Sorting and writing from bucket 3
+sorting took 9.78693s
+: Sorting and writing from bucket 4
+sorting took 9.73844s
+: Sorting and writing from bucket 5
+sorting took 9.82921s
+: Sorting and writing from bucket 6
+sorting took 9.70669s
+: Sorting and writing from bucket 7
+sorting took 9.7237s
+: Sorting and writing from bucket 8
+sorting took 10.5141s
+: Sorting and writing from bucket 9
+sorting took 10.1225s
+ success
+Press <RETURN> to close this window...
+

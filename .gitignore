@@ -1,0 +1,10 @@
+*.o
+*.user
+*.Debug
+*.Release
+debug/
+Makefile
+.qmake.stash
+Module_11_DZ
+source_file.txt
+bucket*
