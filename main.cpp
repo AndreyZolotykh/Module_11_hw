@@ -7,24 +7,6 @@
 #include <chrono>
 #include "bucketSort.h"
 
-constexpr int STEPS {8}; // кол-во шагов, на которое мы будем разбивать обработку большого массива (генерация, поиск максимума и т.д.
-                        // чтобы не загружать оперативную память одним большим куском.
-// Записать массив в файл
-void write_arr(const std::string& filename, const int*  arr, const int n,
-               std::ios_base::openmode mode)
-{
-    std::fstream fs;
-    if (!fs.is_open())
-        fs.open(filename, mode);
-    if(fs.is_open()) // проверяем, что файл успешно открыт
-    {
-       for (int i = 0; i < n; i++)
-           fs << arr[i] << ' '; // записываем значения через пробел
-       fs << '\n';
-
-       fs.close(); // закрываем файл
-    }
-}
 // Прочитать массив из файла
 void read_arr(const std::string& filename, int* arr, const int n)
 {
@@ -48,22 +30,23 @@ int GenerateBigFile(const std::string& SRC_FILENAME)
     fs.open(SRC_FILENAME, std::fstream::out);
     if (fs.is_open())
     {
-        fs << ""; // очищаем файл
+        fs << ""; // очистили файл
         fs.close();
     }
-    for (int i=0; i < STEPS; i++)
+    fs.open(SRC_FILENAME, std::fstream::app);
+
+    srand(time(nullptr)); // используем текущее время, чтобы сгенерировать рандомные значения
+    int lef_border = 0;
+    int range_len = 100; // правая граница = range_len + left_border
+    int rand_value {0};
+
+    for (int i=0; i < BIG_INT_SIZE; i++)
     {
-        const int size = BIG_INT_SIZE / STEPS;  // Размер каждого массива шага - одна восьмая от исходного
-        std::unique_ptr<int[]> rand_arr{new int[size]};
+        rand_value = lef_border + rand() % range_len; // генерируем число в указанном диапазоне и записываем в массив
 
-        srand(time(nullptr)); // используем текущее время, чтобы сгенерировать рандомные значения
-        int lef_border = 0;
-        int range_len = 100; // правая граница = range_len + left_border
-        for (int i = 0; i < size; i++)
-            rand_arr[i] = lef_border + rand() % range_len; // генерируем число в указанном диапазоне и записываем в массив
-
-        write_arr(SRC_FILENAME, rand_arr.get(), size, std::fstream::app); // записываем массив в конец файла
+        fs << rand_value << ' '; // записываем значения через пробел
     }
+    fs << '\n';
     if (fs.is_open())
         fs.close();
 
